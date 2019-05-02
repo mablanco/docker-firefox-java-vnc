@@ -11,5 +11,3 @@ This will start a container:
     $ docker run -d --net host --name firefox-java-vnc mablanco/firefox-java-vnc
 
 Now you can access Firefox with any VNC client on standard port 5900.
-
-You may wish to add a -v <localpath>:<containerpath> if you want to use Virtual Media or the like to mount ISOs for loading Operating Systems/etc. on servers.
