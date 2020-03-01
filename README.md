@@ -8,6 +8,6 @@ This image is built on Debian Wheezy, therefore the available browser is Iceweas
 
 This will start a container:
 
-    $ docker run -d --net host --name firefox-java-vnc mablanco/firefox-java-vnc
+    $ docker run -d --rm -p 5900:5900 --name firefox-java-vnc mablanco/firefox-java-vnc
 
-Now you can access Firefox with any VNC client on standard port 5900.
+Now you can access Firefox with any VNC client opening localhost on standard port 5900.
