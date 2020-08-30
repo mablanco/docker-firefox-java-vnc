@@ -1,4 +1,4 @@
-FROM debian:wheezy-slim
+FROM debian:wheezy-20190228-slim
 RUN mkdir -p /usr/share/man/man1 && \
     echo "deb http://archive.debian.org/debian wheezy main contrib non-free" > /etc/apt/sources.list && \
     apt-get update && \
