@@ -11,3 +11,19 @@ This will start a container:
     $ docker run -d --rm -p 5900:5900 --name firefox-java-vnc mablanco/firefox-java-vnc
 
 Now you can access Firefox with any VNC client opening localhost on standard port 5900.
+
+## Troubleshooting
+
+If the container starts and then dies without notice, follow these steps to try to debug the problem:
+
+1. Launch the container without the `--rm` argument: `docker run -p 5900:5900 --name firefox-java-vnc mablanco/firefox-java-vnc`
+2. When the container exists, run the command `docker ps -a | grep firefox-java-vnc` and check if the exit code is 139
+3. Have a look at your kernel logs with `sudo dmesg` and look for a line like this one: `x11vnc[154000] vsyscall attempted with vsyscall=none...`
+
+If you get the same results from steps 2 and 3, then you're suffering from the same issue described in the following links:
+- https://einsteinathome.org/es/content/vsyscall-now-disabled-latest-linux-distros
+- https://github.com/moby/moby/issues/28705
+
+You can solve this issue by adding the parameter `vsyscall=emulate` to the Grub command line. You can do that in Debian by editing `/etc/default/grub` and adding that parameter to the `GRUB_CMDLINE_LINUX_DEFAULT` variable, running `sudo update-grub` afterwards and finally rebooting your computer.
+
+Remember that this is not a **bug** but just an **issue** derived from the fact that `vsyscall` is defaulted to `none` in modern Linux distros for security reasons, so use this workaround carefully.
