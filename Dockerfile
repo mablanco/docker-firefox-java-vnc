@@ -9,7 +9,7 @@ RUN mkdir -p /usr/share/man/man1 && \
     update-alternatives --set javaws /usr/lib/jvm/java-6-openjdk-amd64/jre/bin/javaws && \
     apt-get -y --force-yes autoremove && \
     apt-get clean && \
-    rm -rf /var/lib/{apt,dpkg,cache,log} && \
+    rm -rf /var/lib/apt/lists/* && \
     mkdir ~/.vnc && \
     echo "exec jwm &" >> ~/.xinitrc && \
     echo "firefox" >> ~/.xinitrc && \
